@@ -1,28 +1,31 @@
 import React, { useState, useContext } from "react";
-import API from "../services/api";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 
-export default function Register() {
-  const [form, setForm] = useState({ username: "", email: "", password: "" });
-  const { login } = useContext(AuthContext);
+const Register = () => {
+  const { register } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await API.post("/api/auth/register", form);
-    login(res.data.user, res.data.token);
-    navigate("/dashboard");
+    await register(username, email, password);
+    navigate("/");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input name="username" placeholder="Username" onChange={handleChange} />
-      <input name="email" type="email" placeholder="Email" onChange={handleChange} />
-      <input name="password" type="password" placeholder="Password" onChange={handleChange} />
-      <button type="submit">Register</button>
-    </form>
+    <div className="form-container">
+      <h2>Register</h2>
+      <form onSubmit={handleSubmit}>
+        <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        <button type="submit">Register</button>
+      </form>
+    </div>
   );
-}
+};
+
+export default Register;

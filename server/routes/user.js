@@ -8,8 +8,8 @@ const {
   addEducation,
 } = require("../controllers/userController");
 
-router.get("/profile", auth, getMyProfile);
-router.put("/update", auth, updateProfile);
+router.get("/me", auth, getMyProfile);
+router.put("/me", auth, updateProfile);
 router.post("/experience", auth, addExperience);
 router.post("/education", auth, addEducation);
 
