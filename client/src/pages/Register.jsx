@@ -1,28 +1,42 @@
+// src/pages/Register.jsx
 import React, { useState, useContext } from "react";
-import { AuthContext } from "../context/AuthContext.jsx";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { AuthContext } from "../context/AuthContext";
+import "./RegisterAndLoginStyle.css";
 
 const Register = () => {
-  const { register } = useContext(AuthContext);
+  const [form, setForm] = useState({ username: "", email: "", password: "" });
+  const { setToken } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleRegister = async (e) => {
     e.preventDefault();
-    await register(username, email, password);
-    navigate("/");
+    try {
+      const res = await axios.post("http://localhost:5000/api/auth/register", form);
+      setToken(res.data.token);
+      localStorage.setItem("token", res.data.token);
+      toast.success("Registered successfully!");
+      navigate("/");
+    } catch (err) {
+      toast.error("Registration failed");
+    }
   };
 
   return (
-    <div className="form-container">
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
-        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+    <div className="auth-container">
+      <form className="auth-form" onSubmit={handleRegister}>
+        <h2>Register</h2>
+        <input type="text" name="username" placeholder="Username" value={form.username} onChange={handleChange} required />
+        <input type="email" name="email" placeholder="Email" value={form.email} onChange={handleChange} required />
+        <input type="password" name="password" placeholder="Password" value={form.password} onChange={handleChange} required />
         <button type="submit">Register</button>
+    
       </form>
     </div>
   );

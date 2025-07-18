@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Profile.css";
 import { useAuth } from "../context/AuthContext";
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const { token } = useAuth();
@@ -36,7 +37,7 @@ const Profile = () => {
         headers: { Authorization: `Bearer ${token}` }
       });
       setProfile(res.data);
-      alert("Profile updated");
+      toast.success("Profile updated!")
     } catch (err) {
       console.error("Error updating profile", err);
     }
@@ -71,11 +72,14 @@ const Profile = () => {
   return (
     <div className="profile-container">
       <h2>{profile.username}'s Profile</h2>
-      <img
-        src={formData.avatar || "https://via.placeholder.com/100"}
-        alt="avatar"
-        className="avatar-lg"
-      />
+    <div className="avatar-container">
+  <img
+    src={profile.avatar || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+    alt="avatar"
+    className="profile-avatar"
+  />
+</div>
+
       <div className="profile-section">
         <label>Bio</label>
         <textarea

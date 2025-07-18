@@ -30,6 +30,7 @@ const LikeButton = ({ postId, initialLikes = [] }) => {
   return (
     <div className="like-button" onClick={handleLike}>
       <AiFillLike color="#007bff" />
+    
       <span>{likes.length} Likes</span>
     </div>
   );

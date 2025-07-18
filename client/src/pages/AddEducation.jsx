@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./AddEducation.css";
+
 
 const AddEducation = () => {
   const [form, setForm] = useState({

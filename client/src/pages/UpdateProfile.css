@@ -1,55 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
 .update-profile-container {
   max-width: 600px;
-  margin: auto;
-  background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  margin: 60px auto;
+  padding: 36px 40px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  font-family: 'Inter', sans-serif;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-h2 {
+.update-profile-container h2 {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 30px;
+  font-size: 26px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Form layout */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px; /* spacing between form-groups */
 }
 
 .form-group {
-  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 0.3rem;
+.form-group label {
+  font-weight: 500;
+  color: #333;
 }
 
-input,
+/* Inputs and textarea styling */
+input[type="text"],
 textarea {
-  width: 100%;
-  padding: 0.6rem;
+  padding: 12px 14px;
+  font-size: 15px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+  outline: none;
 }
 
 textarea {
   resize: vertical;
+  min-height: 90px;
+  line-height: 1.5;
 }
 
-button {
-  background-color: #4caf50;
-  color: white;
-  padding: 0.7rem 1.2rem;
+/* Button */
+button[type="submit"] {
+  padding: 12px;
+  background: linear-gradient(135deg, #007bff, #00b4d8);
+  color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-button:hover {
-  background-color: #45a049;
+button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 123, 255, 0.3);
 }
 
+/* Message styling */
 .status-msg {
-  margin-top: 1rem;
   text-align: center;
-  font-weight: bold;
+  font-weight: 500;
+  margin-top: 12px;
+  color: #28a745; /* green by default */
+}
+
+.status-msg.error {
+  color: #dc3545;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .update-profile-container {
+    padding: 24px;
+  }
+
+  button[type="submit"] {
+    font-size: 15px;
+  }
 }

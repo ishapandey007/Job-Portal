@@ -17,6 +17,7 @@ app.use("/api/posts", require("./routes/post"));
 
 
 
+
 const PORT = 5000;
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))

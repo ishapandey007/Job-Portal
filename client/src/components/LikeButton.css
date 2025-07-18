@@ -1,14 +1,39 @@
+/* LikeButton.css */
+
 .like-button {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  gap: 10px;
+  background-color: #f5faff;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid #cce4ff;
+  box-shadow: 0 2px 6px rgba(0, 123, 255, 0.1);
   cursor: pointer;
-  gap: 0.4rem;
-  margin-right: 1rem;
-  font-weight: 500;
-  color: #333;
-  transition: color 0.2s;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .like-button:hover {
-  color: #007bff;
+  background-color: #e6f0ff;
+  transform: scale(1.02);
+}
+
+.like-button:active {
+  transform: scale(0.97);
+}
+
+.like-button svg {
+  width: 22px;
+  height: 22px;
+  transition: transform 0.3s ease;
+}
+
+.like-button:hover svg {
+  transform: scale(1.2);
+}
+
+.like-button span {
+  font-size: 15px;
+  font-weight: 500;
+  color: #0056b3;
 }

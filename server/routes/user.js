@@ -8,9 +8,13 @@ const {
   addEducation,
 } = require("../controllers/userController");
 
+
+
 router.get("/me", auth, getMyProfile);
 router.put("/me", auth, updateProfile);
 router.post("/experience", auth, addExperience);
 router.post("/education", auth, addEducation);
+
+
 
 module.exports = router;

@@ -1,5 +1,6 @@
-.comment-form {
+/* .comment-form {
   display: flex;
+  width: 70px;
   gap: 0.5rem;
   margin-top: 0.8rem;
 }
@@ -22,4 +23,70 @@
 
 .comment-form button:hover {
   background-color: #0056b3;
+} */
+
+
+/* CommentForm.css */
+
+.comment-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background-color: #f5f7fa;
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-top: 20px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.comment-form input[type="text"] {
+  flex-grow: 1;
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: white;
+}
+
+.comment-form input[type="text"]:focus {
+  border-color: #4f46e5; /* indigo-600 */
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.comment-form button {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.comment-form button:hover {
+  background-color: #4338ca;
+  transform: translateY(-1px);
+}
+
+.comment-form button:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 500px) {
+  .comment-form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .comment-form button {
+    width: 100%;
+  }
 }
